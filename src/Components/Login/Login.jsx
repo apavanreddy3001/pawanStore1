@@ -1,9 +1,17 @@
 import React, { useState } from 'react'
 
+import axios from 'axios'
+
 function Login() {
   const [userEmail,setUserEmail]= useState("");
   const [password,setPassword]= useState("");
-  console.log(password + userEmail);
+  const handler = async () =>{
+   const result =  await axios.get("http://localhost:3000/login",{
+      "emailId":userEmail,
+      "password":password
+    });
+   
+  }
   return (
     <div className='flex w-full'>
       <div className=''> </div>
@@ -26,7 +34,7 @@ function Login() {
                                onChange={(e)=>{setPassword(e.target.value)}}
                                />
                               
-                              <button className="btn btn-neutral mt-4">Login</button>
+                              <button className="btn btn-neutral mt-4" type='button' onClick={handler}>Login</button>
           </fieldset>
               </form>
           </div>
